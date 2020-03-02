@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The custom component card test">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.5.0/adyen.css"
+  integrity="sha384-aWycvW8Dygg+6QHTq56FJMi4CJBjQt4LbRO3zWUuyfbv0A8g3rb5FR/vHyHKfiY0"
+  crossorigin="anonymous">
+  <!-- Adyen provides the SRI hash that you include as the integrity attribute. Refer to our release notes to get the SRI hash for the specific version. https://docs.adyen.com/checkout/components-drop-in-release-notes -->  
+
+  <script src="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.5.0/adyen.js"
+  integrity="sha384-MpcW2OFcC1/y5nwF6UmvRfDXGISpg1rowHVybiS+wJObkUwgFpvbdpJxR2/bwmeA"
+  crossorigin="anonymous"></script>
+  <!-- Adyen provides the SRI hash that you include as the integrity attribute. Refer to our release notes to get the SRI hash for the specific version. https://docs.adyen.com/checkout/components-drop-in-release-notes -->
+  <script type="text/javascript">
+
+        function loader(){
+            function handleOnChange(state, component) {
+                console.log( JSON.stringify( state ) );
+            }
+            
+            const configuration = {
+                locale: "pt-BR", 
+                environment: "test", 
+                originKey: "pub.v2.8015708002740004.aHR0cDovL2xvY2FsaG9zdDozMDAw.KtiI190xm7tYlo2C5f11f3wra0_YiF_xZKKHywrleXI",
+                onChange: handleOnChange
+            };
+            
+            const checkout = new AdyenCheckout(configuration);
+            const customCard = checkout.create('card').mount("#customCard-container");
+
+        }
+
+  </script>
+  
+</head>
+
+<body onload="loader();">
+  
+    
+    <div id="customCard-container">
+        <label>
+            <span>Card number:</span>
+            <span data-cse="encryptedCardNumber"></span>
+        </label>
+        <label>
+            <span>Expiry date:</span>
+            <span data-cse="encryptedExpiryDate"></span>
+        </label>
+        <label>
+            <span>CVV/CVC:</span>
+            <span data-cse="encryptedSecurityCode"></span>
+        </label>
+    </div>
+
+</body>
+</html>
